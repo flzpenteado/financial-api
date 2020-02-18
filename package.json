@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint src/** test/** --fix"
+    "lint": "eslint src/** test/** --fix",
+    "watch-tests": "jest --watch --verbose",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,8 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
     "express": "^4.17.1"
   }
 }
