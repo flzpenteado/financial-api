@@ -1,5 +1,5 @@
 module.exports = app => {
-    const findAll = (filter = {}) => app.db('users').select().where(filter);
+    const findAll = (filter = {}) => app.db('user').select().where(filter);
 
     const save = async user => {
         if (!user.name) return { error: 'Name is a required field' };
@@ -10,7 +10,7 @@ module.exports = app => {
 
         if (existingUser) return { error: 'Email already exists' };
 
-        return app.db('users').insert(user, '*');
+        return app.db('user').insert(user, '*');
     };
 
     return { findAll, save };

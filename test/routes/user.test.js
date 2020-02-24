@@ -3,6 +3,8 @@ const app = require('../../src/app');
 
 const email = `${Date.now()}@email.com`;
 
+beforeAll(() => app.db('user').insert({ name: 'Walter White', email, password: 12345 }));
+
 test('It should list all users', () => request(app).get('/users')
     .then(res => {
         expect(res.status).toBe(200);
@@ -11,7 +13,7 @@ test('It should list all users', () => request(app).get('/users')
 
 
 test('It should correctly insert an user', () => request(app).post('/users')
-    .send({ name: 'Walter White', email, password: 'pwd123' })
+    .send({ name: 'Walter White', email: `${Date.now()}@email.com`, password: 'pwd123' })
     .then(res => {
         expect(res.status).toBe(201);
         expect(res.body.name).toBe('Walter White');
