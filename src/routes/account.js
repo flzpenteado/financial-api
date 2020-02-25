@@ -10,5 +10,10 @@ module.exports = app => {
         return res.status(200).json(accounts);
     };
 
-    return { create, findAll };
+
+    const get = async (req, res) => {
+        const account = await app.services.account.get(req.params.id);
+        return res.status(200).json(account);
+    };
+    return { create, findAll, get };
 };

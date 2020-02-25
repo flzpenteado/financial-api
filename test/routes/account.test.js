@@ -21,3 +21,14 @@ test('It should list all accounts', () => request(app).get('/account')
         expect(res.status).toBe(200);
         expect(res.body.length).toBeGreaterThan(0);
     }));
+
+test('It should get an account by id', async () => {
+    const insertedIds = await app.db('account').insert({ name: 'Account by id', user_id: userId }, 'id');
+    const id = insertedIds[0];
+
+    return request(app).get(`/account/${id}`)
+        .then( res => {
+            expect(res.status).toBe(200);
+            expect(res.body.id).toBe(id);
+        });
+});
