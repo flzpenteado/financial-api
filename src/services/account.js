@@ -5,5 +5,9 @@ module.exports = app => {
 
     const get = id => app.db('account').where({ id }).first();
 
-    return { create, findAll, get };
+    const update = (id, account) => app.db('account').where({ id }).update(account, '*');
+
+    return {
+        create, findAll, get, update,
+    };
 };

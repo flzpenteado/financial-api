@@ -27,8 +27,20 @@ test('It should get an account by id', async () => {
     const id = insertedIds[0];
 
     return request(app).get(`/account/${id}`)
-        .then( res => {
+        .then(res => {
             expect(res.status).toBe(200);
             expect(res.body.id).toBe(id);
+        });
+});
+
+test('It should update an account', async () => {
+    const insertedIds = await app.db('account').insert({ name: 'Account by id', user_id: userId }, 'id');
+    const id = insertedIds[0];
+
+    return request(app).put(`/account/${id}`)
+        .send({ name: 'Updated name' })
+        .then(res => {
+            expect(res.status).toBe(200);
+            expect(res.body.name).toBe('Updated name');
         });
 });
