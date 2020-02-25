@@ -7,7 +7,9 @@ module.exports = app => {
 
     const update = (id, account) => app.db('account').where({ id }).update(account, '*');
 
+    const del = id => app.db('account').where({ id }).del();
+
     return {
-        create, findAll, get, update,
+        create, findAll, get, update, del,
     };
 };

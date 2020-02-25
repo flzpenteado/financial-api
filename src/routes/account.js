@@ -21,7 +21,12 @@ module.exports = app => {
             .then(result => res.status(200).json(result[0]));
     };
 
+    const del = (req, res) => {
+        app.services.account.del(req.params.id)
+            .then(() => res.status(204).send());
+    };
+
     return {
-        create, findAll, get, update,
+        create, findAll, get, update, del,
     };
 };

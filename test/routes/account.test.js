@@ -44,3 +44,11 @@ test('It should update an account', async () => {
             expect(res.body.name).toBe('Updated name');
         });
 });
+
+test('It should delete an account', async () => {
+    const insertedIds = await app.db('account').insert({ name: 'Account by id', user_id: userId }, 'id');
+    const id = insertedIds[0];
+
+    return request(app).delete(`/account/${id}`)
+        .then(res => expect(res.status).toBe(204));
+});
