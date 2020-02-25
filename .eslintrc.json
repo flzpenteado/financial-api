@@ -17,6 +17,7 @@
     },
     "rules": {
         "indent":["error", 4], 
-        "arrow-parens":"off"
+        "arrow-parens":"off",
+        "prefer-destructuring":"off"
     }
 }
