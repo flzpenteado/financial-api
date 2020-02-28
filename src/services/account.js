@@ -1,5 +1,11 @@
+const ValidationError = require('../errors/validationError');
+
 module.exports = app => {
-    const create = account => app.db('account').insert(account);
+    const create = account => {
+        if (!account.name) throw new ValidationError('Name is a required field');
+
+        return app.db('account').insert(account);
+    };
 
     const findAll = (filter = {}) => app.db('account').where(filter);
 

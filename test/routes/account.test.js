@@ -16,6 +16,14 @@ test('It should correctly insert an account', () => request(app).post('/account'
         expect(res.status).toBe(201);
     }));
 
+test('It should not insert an account without name', () => request(app).post('/account')
+    .send({ user_id: userId })
+    .then(res => {
+        expect(res.status).toBe(400);
+        expect(res.body.error).toBe('Name is a required field');
+    }));
+
+
 test('It should list all accounts', () => request(app).get('/account')
     .then(res => {
         expect(res.status).toBe(200);

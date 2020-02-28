@@ -1,8 +1,11 @@
 module.exports = app => {
-    const create = async (req, res) => {
-        await app.services.account.create(req.body);
-
-        return res.status(201).json();
+    const create = async (req, res, next) => {
+        try {
+            await app.services.account.create(req.body);
+            return res.status(201).json();
+        } catch (error) {
+            next(error);
+        }
     };
 
     const findAll = async (req, res) => {
